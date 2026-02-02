@@ -1,0 +1,11 @@
+{
+  "name": "@geofy/shared-chat",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "esbuild src/widget.ts --bundle --minify --sourcemap --outfile=dist/widget.js --platform=browser --target=es2017"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.0"
+  }
+}

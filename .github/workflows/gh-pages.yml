@@ -1,0 +1,30 @@
+name: Build and deploy to GitHub Pages (gh-pages)
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install root deps
+        run: npm ci
+      - name: Build shared widget
+        run: npm run build:shared-chat
+      - name: Build apps (you must add build scripts inside each app)
+        run: |
+          npm run build:prob || echo "probabilistic build step skipped (provide build script)"
+          npm run build:kib || echo "kibuefx-landers build step skipped (provide build script)"
+      - name: Assemble docs
+        run: node scripts/assemble-site.js
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          publish_branch: gh-pages
