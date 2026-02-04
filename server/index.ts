@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const MODEL_NAME = process.env.MODEL_NAME || 'gpt-5';
+const MODEL_NAME = process.env.MODEL_NAME || 'gpt-3.5-turbo';
 
 if (!OPENAI_API_KEY) {
   console.warn('Warning: OPENAI_API_KEY not set. Set it in .env for local testing.');

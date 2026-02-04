@@ -9,7 +9,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(405).send({ error: 'Method not allowed' });
     }
     const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-    const MODEL_NAME = process.env.MODEL_NAME || 'gpt-5';
+    const MODEL_NAME = process.env.MODEL_NAME || 'gpt-3.5-turbo';
 
     if (!OPENAI_API_KEY) {
       return res.status(500).json({ error: 'OPENAI_API_KEY not configured' });
